@@ -7,16 +7,16 @@ global test
 
 app = Flask(__name__)
 
-# Global variable to track the thread status
+# Global variables
+counter = 0
 thread_running = False
 
 def test():
-    global thread_running
-    print("Test")
+    global counter, thread_running
     while True:
-        time.sleep(5)
-        print("Thread is running...")
-
+        counter += 1
+        time.sleep(5)  # Adjust sleep time as needed
+        print('Thread is running...')
 
 @app.route('/')
 def hello_world():
@@ -25,8 +25,7 @@ def hello_world():
         thread_running = True
     else:
         thread_running = False
-    return f'Thread is running: {thread_running}'
-
+    return jsonify({'thread_running': thread_running, 'counter': counter})
 
 update_thread = threading.Thread(target=test)
 update_thread.start()
