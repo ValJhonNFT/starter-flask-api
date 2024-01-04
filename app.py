@@ -3,8 +3,6 @@ import os
 import threading
 import time
 
-global test
-
 app = Flask(__name__)
 
 # Global variables
