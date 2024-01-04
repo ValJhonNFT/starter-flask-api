@@ -1,8 +1,7 @@
-from flask import Flask
+from flask import Flask, jsonify
 import os
 import threading
 import time
-import jsonify
 
 app = Flask(__name__)
 
